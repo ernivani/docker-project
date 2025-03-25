@@ -1,0 +1,29 @@
+.git
+.gitignore
+.env.*
+!.env.example
+.docker
+docker-compose*.yml
+
+/node_modules/
+/var/
+/vendor/
+*.log
+
+###> IDE files ###
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+###< IDE files ###
+
+###> Testing ###
+/phpunit.xml
+.phpunit.result.cache
+/coverage/
+###< Testing ###
+
+###> Assets ###
+/public/bundles/
+/public/uploads/
+###< Assets ### 
