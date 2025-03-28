@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY prisma ./prisma/
-COPY .env ./
 
 RUN npm install
 RUN npm install -g prisma
@@ -15,4 +14,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD sh -c "sleep 5 && npx prisma migrate deploy && npm start"
+CMD ["sh", "-c", "sleep 5 && npx prisma migrate deploy && npm start"]
