@@ -1,16 +1,28 @@
 describe('Basic test', () => {
-  it('should check if the app is running and API endpoints are working', () => {
+  beforeEach(() => {
     cy.visit('/')
-    
-    // Check if the API endpoint is working
-    cy.request('/api/messages').then((response) => {
-      expect(response.status).to.eq(200)
-      expect(response.body).to.be.an('array')
-    })
+    cy.waitForSocket()
+    cy.clearMessages()
+  })
 
-    // Check if the WebSocket connection works
-    cy.window().then((win) => {
-      expect(win.io).to.be.a('function')
-    })
+  it('should check if the app is running and basic functionality works', () => {
+    // Test message creation
+    cy.createMessage('Test message 1')
+      .then(() => {
+        cy.waitForMessage('Test message 1')
+      })
+
+    // Test WebSocket messaging
+    cy.sendSocketMessage('Test message 2')
+    cy.waitForMessage('Test message 2')
+
+    // Test message loading
+    cy.get('.messages-container').should('exist')
+    cy.get('.message').should('have.length', 2)
+
+    // Test form submission
+    cy.get('input[type="text"]').type('Test message 3')
+    cy.get('button[type="submit"]').click()
+    cy.waitForMessage('Test message 3')
   })
 }) 
