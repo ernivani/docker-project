@@ -9,7 +9,9 @@
   "scripts": {
     "build": "prisma generate",
     "start": "node main.js",
-    "dev": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@prisma/client": "^6.5.0",
@@ -20,6 +22,7 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
+    "cypress": "^14.2.1",
     "nodemon": "^3.1.9"
   }
 }
